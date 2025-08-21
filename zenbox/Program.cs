@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using zenbox.Data;
+using zenbox.data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +15,21 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+ApplicationDbContext dbcontext = app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+dbcontext.Database.EnsureCreated();
+
+var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<IdentityUser>>();
+
+ApplicationDbInitializer.SeedUsers(userManager);
+
+app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+
+
+
+app.MapGet("/tasks", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
+app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
