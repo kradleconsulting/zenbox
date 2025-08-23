@@ -21,11 +21,10 @@ dbcontext.Database.EnsureCreated();
 
 var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<IdentityUser>>();
 
-ApplicationDbInitializer.SeedUsers(userManager);
+if (userManager != null)
+    ApplicationDbInitializer.SeedUsers(userManager);
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-
-
 
 app.MapGet("/tasks", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
 app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));
