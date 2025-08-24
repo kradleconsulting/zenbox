@@ -30,9 +30,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
-  <Target Name="ScsstoCss" BeforeTargets="Build">
+  <!--<Target Name="ScsstoCss" BeforeTargets="Build">
     <Exec Command="mkdir $(ProjectDir)wwwroot/css" Condition="!Exists('$(ProjectDir)wwwroot/css')" />
-	<Exec Command="sass --no-source-map $(ProjectDir)wwwroot\lib\bootstrap\scss\main.scss $(ProjectDir)wwwroot\css\main.css" />
-  </Target>
+	<Exec Command="sass \-\-no-source-map $(ProjectDir)wwwroot\lib\bootstrap\scss\main.scss $(ProjectDir)wwwroot\css\main.css" />
+  </Target>-->
 
 </Project>
