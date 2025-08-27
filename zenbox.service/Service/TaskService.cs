@@ -8,7 +8,7 @@ using zenbox.core.Interface;
 using zenbox.data;
 using zenbox.model;
 
-namespace zenbox.service.Service
+namespace zenbox.service
 {
     public class TaskService : ITaskService
     {

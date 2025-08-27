@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - zenbox</title>
+    <link rel="stylesheet" href="~/css/main.css" />    
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">*@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebar.css" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div>
+                    <a href="https://zenbox.live"><img src="~/images/logo-m.png" height="80" style="padding-right:10px;"/></a>
+                </div>
+                <div>
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">zenbox</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+		<div class="row">
+			<div class="text-center col-3">
+				<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+					<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+						<svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
+							<use xlink:href="#bootstrap" />
+						</svg>
+						<span class="fs-4">Sidebar</span>
+					</a>
+					<hr>
+					<ul class="nav nav-pills flex-column mb-auto">
+						<li class="nav-item">
+							<a href="#" class="nav-link active" aria-current="page">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#home" />
+								</svg>
+								Home
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#speedometer2" />
+								</svg>
+								Dashboard
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#people-circle" />
+								</svg>
+								Students
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#grid" />
+								</svg>
+								Payment
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#table" />
+								</svg>
+								Lesson
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#table" />
+								</svg>
+								Schedule
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#table" />
+								</svg>
+								Tests
+							</a>
+						</li>
+						<li>
+							<a href="/Tasklist/Index" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#list" />
+								</svg>
+								Tasks
+							</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link link-body-emphasis">
+								<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+									<use xlink:href="#file" />
+								</svg>
+								Materials
+							</a>
+						</li>
+					</ul>
+					<hr>
+					<div class="dropdown">
+						<a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="https://avatars.githubusercontent.com/u/14904808?v=4&size=32" alt="" width="32" height="32" class="rounded-circle me-2">
+							<strong>Settings</strong>
+						</a>
+						<ul class="dropdown-menu text-small shadow">
+							<li>
+								<a class="dropdown-item" href="#">New project...</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Settings</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Profile</a>
+							</li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Sign out</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-9">
+				<main role="main" class="pb-3">
+					@RenderBody()
+				</main>
+			</div>
+		</div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - zenbox - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/sidebar.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

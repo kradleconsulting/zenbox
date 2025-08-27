@@ -3,7 +3,7 @@ using zenbox.core.Interface;
 using zenbox.data;
 using zenbox.model;
 
-namespace zenbox.service.Service
+namespace zenbox.service
 {
     public class ListService : IListService
     {
@@ -56,9 +56,7 @@ namespace zenbox.service.Service
         }
 
         public async Task<ListModel> AddList(ListModel listModel)
-        {
-
-            return new ListModel();
+        {            
             var th = new TaskHeader()
             {
                 OwnerId = listModel.OwnerId,

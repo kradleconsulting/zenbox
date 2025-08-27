@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using zenbox.core.Interface;
 using zenbox.data;
+using zenbox.service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+builder.Services.AddTransient<IListService, ListService>();
+builder.Services.AddTransient<ITaskService, TaskService>();
+
+
 var app = builder.Build();
 
 ApplicationDbContext dbcontext = app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -26,9 +32,18 @@ if (userManager != null)
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
 
-app.MapGet("/tasks", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
-app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));
+app.UseRouting();
+app.UseAuthorization();
 
+#pragma warning disable ASP0014
+app.UseEndpoints(routes =>
+{
+    routes.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+});
+#pragma warning restore ASP0014
+
+//app.MapGet("/tasklist/index", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
+//app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -44,11 +59,9 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapRazorPages();
+
 
 app.Run();

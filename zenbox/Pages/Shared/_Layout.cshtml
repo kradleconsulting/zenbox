@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <div>
-                    <a href="https://zenbox.live"><img src="~/images/logo-m.png" height="80" style="padding-right:10px;"/></a>
+                    <a href="https://zenbox.azurewebsites.net"><img src="~/images/logo-m.png" height="80" style="padding-right:10px;"/></a>
                 </div>
                 <div>
                     <a class="navbar-brand" asp-area="" asp-page="/Index">zenbox</a>
@@ -37,10 +37,122 @@
             </div>
         </nav>
     </header>
+    
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+		<div class="text-center">
+			<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+				<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+					<svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
+						<use xlink:href="#bootstrap" />
+					</svg>
+					<span class="fs-4">Sidebar</span>
+				</a>
+				<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
+					<li class="nav-item">
+						<a href="#" class="nav-link active" aria-current="page">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#home" />
+							</svg>
+							Home
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#speedometer2" />
+							</svg>
+							Dashboard
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#people-circle" />
+							</svg>
+							Students
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#grid" />
+							</svg>
+							Payment
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#table" />
+							</svg>
+							Lesson
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#table" />
+							</svg>
+							Schedule
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#table" />
+							</svg>
+							Tests
+						</a>
+					</li>
+					<li>
+						<a href="/Tasklist/Index" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#list" />
+							</svg>
+							Tasks
+						</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link link-body-emphasis">
+							<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+								<use xlink:href="#file" />
+							</svg>
+							Materials
+						</a>
+					</li>
+				</ul>
+				<hr>
+				<div class="dropdown">
+					<a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="https://avatars.githubusercontent.com/u/14904808?v=4&size=32" alt="" width="32" height="32" class="rounded-circle me-2">
+						<strong>Settings</strong>
+					</a>
+					<ul class="dropdown-menu text-small shadow">
+						<li>
+							<a class="dropdown-item" href="#">New project...</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Settings</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Profile</a>
+						</li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Sign out</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div>
+			<main role="main" class="pb-3">
+				@RenderBody()
+			</main>
+		</div>
     </div>
 
     <footer class="border-top footer text-muted">

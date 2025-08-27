@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\zenbox.core\zenbox.core.csproj" />
+    <ProjectReference Include="..\zenbox.data\zenbox.data.csproj" />
     <ProjectReference Include="..\zenbox.model\zenbox.model.csproj" />
-    <ProjectReference Include="..\zenbox\zenbox.web.csproj" />
   </ItemGroup>
 
 </Project>
