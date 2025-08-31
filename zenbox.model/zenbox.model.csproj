@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ListViewmodel\ListModel.cs~RF1b382a76.TMP" />
+    <None Remove="DashboardModel.cs~RF563d06df.TMP" />
   </ItemGroup>
 
 </Project>

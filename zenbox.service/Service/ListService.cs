@@ -12,20 +12,20 @@ namespace zenbox.service
         {
             _db = db;
         }
-        public async Task<IEnumerable<ListModel>> GetLists(string userId)
+        public async Task<IEnumerable<TasklistModel>> GetLists(string userId)
         {
             return _db.TaskHeaders.Any(e => e.OwnerId == userId) ?
                              await _db.TaskHeaders.Where(e => e.OwnerId == userId)
-                                                  .Select(e => new ListModel()
+                                                  .Select(e => new TasklistModel()
                                                   {
                                                       Id = e.Id,
                                                       Name = e.Name,
                                                       OwnerId = e.OwnerId,
                                                   })
-                             .ToListAsync() : new List<ListModel>();
+                             .ToListAsync() : new List<TasklistModel>();
         }
 
-        public async Task<ListModel> GetList(Guid id)
+        public async Task<TasklistModel> GetList(Guid id)
         {
 
             var th = await _db.TaskHeaders
@@ -34,7 +34,7 @@ namespace zenbox.service
 
             if (th != null)
             {
-                return new ListModel()
+                return new TasklistModel()
                 {
                     Id = th.Id,
                     Name = th.Name,
@@ -55,7 +55,7 @@ namespace zenbox.service
             return null;
         }
 
-        public async Task<ListModel> AddList(ListModel listModel)
+        public async Task<TasklistModel> AddList(TasklistModel listModel)
         {            
             var th = new TaskHeader()
             {
@@ -74,7 +74,7 @@ namespace zenbox.service
             _db.TaskLines.AddRange(lines);
             await _db.SaveChangesAsync();
 
-            return new ListModel()
+            return new TasklistModel()
             {
                 Id = th.Id,
                 OwnerId = th.OwnerId,

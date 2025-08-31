@@ -37,7 +37,7 @@ namespace zenbox.web.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
 
-            var model = new ListModel
+            var model = new TasklistModel
             {
                 Name = name,
                 OwnerId = user.Id

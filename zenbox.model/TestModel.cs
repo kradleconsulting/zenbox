@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace zenbox.model
 {
-    public class ListModel
+    public class TestModel
     {
         public Guid Id { get; set; }
+        public Guid HeaderId { get; set; }
         public string Name { get; set; }
-        public string OwnerId { get; set; }
-
-        public List<TaskModel> Tasks = new List<TaskModel>();
+        public string Description { get; set; }
+        public DateTime LastUpdated { get; set; }
+        public bool Checked { get; set; }
     }
 }
