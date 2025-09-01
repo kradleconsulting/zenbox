@@ -1,7 +1,2 @@
-﻿(() => {
-    'use strict'
-    const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    tooltipTriggerList.forEach(tooltipTriggerEl => {
-        new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-})()
+﻿const toggler = document.querySelector(".toggler-btn");
+toggler.addEventListener("click", function () { document.querySelector("#sidebar").classList.toggle("collapsed") });

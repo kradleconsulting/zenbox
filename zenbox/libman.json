@@ -13,5 +13,11 @@
   "library": "@daypilot/daypilot-lite-javascript@4.4.0",
   "destination": "wwwroot/lib/daypilot/"
 }
+,
+{
+  "provider": "cdnjs",
+  "library": "bootstrap-icons@1.13.1",
+  "destination": "wwwroot/lib/bootstrap-icons/"
+}
 ]
 }

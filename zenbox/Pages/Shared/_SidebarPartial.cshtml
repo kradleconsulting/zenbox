@@ -1,109 +1,92 @@
-﻿<div class="text-center col-3">
-	<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
-		<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-			<svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
-				<use xlink:href="#bootstrap" />
+﻿<ul class="nav nav-pills flex-column mb-auto">
+	<li>
+		<a href="/Dashboard/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#speedometer2" />
 			</svg>
-			<span class="fs-4">Sidebar</span>
+			Dashboard
 		</a>
-		<hr>
-		<ul class="nav nav-pills flex-column mb-auto">
-			<li class="nav-item">
-				<a href="#" class="nav-link active" aria-current="page">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#home" />
-					</svg>
-					Home
-				</a>
+	</li>
+	<li>
+		<a href="/Student/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#person-circle" />
+			</svg>
+			Students
+		</a>
+	</li>
+	<li>
+		<a href="/Invoice/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#credit-card" />
+			</svg>
+			Invoice
+		</a>
+	</li>
+	<li>
+		<a href="#" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#clipboard-check" />
+			</svg>
+			Lesson
+		</a>
+	</li>
+	<li>
+		<a href="/Schedule/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#calendar4-range" />
+			</svg>
+			Schedule
+		</a>
+	</li>
+	<li>
+		<a href="/Test/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#card-checklist" />
+			</svg>
+			Tests
+		</a>
+	</li>
+	<li>
+		<a href="/Tasklist/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#pencil-square" />
+			</svg>
+			Tasks
+		</a>
+	</li>
+	<li>
+		<a href="/Material/Index" class="nav-link link-body-emphasis">
+			<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+				<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#collection" />
+			</svg>
+			Materials
+		</a>
+	</li>
+</ul>
+@* 	<hr>
+	<div class="dropdown">
+		<a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+			<img src="https://avatars.githubusercontent.com/u/14904808?v=4&size=32" alt="" width="32" height="32" class="rounded-circle me-2">
+			<strong>Settings</strong>
+		</a>
+		<ul class="dropdown-menu text-small shadow">
+			<li>
+				<a class="dropdown-item" href="#">New project...</a>
 			</li>
 			<li>
-				<a href="/Dashboard/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#speedometer2" />
-					</svg>
-					Dashboard
-				</a>
+				<a class="dropdown-item" href="#">Settings</a>
 			</li>
 			<li>
-				<a href="/Student/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#people-circle" />
-					</svg>
-					Students
-				</a>
+				<a class="dropdown-item" href="#">Profile</a>
 			</li>
 			<li>
-				<a href="/Invoice/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#grid" />
-					</svg>
-					Invoice
-				</a>
+				<hr class="dropdown-divider">
 			</li>
 			<li>
-				<a href="#" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#table" />
-					</svg>
-					Lesson
-				</a>
-			</li>
-			<li>
-				<a href="/Schedule/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#table" />
-					</svg>
-					Schedule
-				</a>
-			</li>
-			<li>
-				<a href="/Test/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#table" />
-					</svg>
-					Tests
-				</a>
-			</li>
-			<li>
-				<a href="/Tasklist/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#list" />
-					</svg>
-					Tasks
-				</a>
-			</li>
-			<li>
-				<a href="/Material/Index" class="nav-link link-body-emphasis">
-					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-						<use xlink:href="#file" />
-					</svg>
-					Materials
-				</a>
+				<a class="dropdown-item" href="#">Sign out</a>
 			</li>
 		</ul>
-		<hr>
-		<div class="dropdown">
-			<a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-				<img src="https://avatars.githubusercontent.com/u/14904808?v=4&size=32" alt="" width="32" height="32" class="rounded-circle me-2">
-				<strong>Settings</strong>
-			</a>
-			<ul class="dropdown-menu text-small shadow">
-				<li>
-					<a class="dropdown-item" href="#">New project...</a>
-				</li>
-				<li>
-					<a class="dropdown-item" href="#">Settings</a>
-				</li>
-				<li>
-					<a class="dropdown-item" href="#">Profile</a>
-				</li>
-				<li>
-					<hr class="dropdown-divider">
-				</li>
-				<li>
-					<a class="dropdown-item" href="#">Sign out</a>
-				</li>
-			</ul>
-		</div>
 	</div>
-</div>
+
+ *@

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\sidebar.css~RF571f1318.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Pages\Index.cshtml~RF3d674fad.TMP" />
     <None Remove="Views\Invoice\Index.cshtml~RF563aee6f.TMP" />
     <None Remove="Views\Schedule\Index.cshtml~RF563653f7.TMP" />

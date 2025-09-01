@@ -5,52 +5,45 @@
 @using zenbox.model
 @model List<TasklistModel>
 
-
-<div class="col-md-6">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th colspan="3">
-                    Your task lists:
-                </th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            @foreach (var item in Model)
-            {
-                <tr id="row-@item.Id">
-                    <td>
-                        <a href="@Url.Action("Index", "Task", new { id = item.Id })" class="btn btn-outline-dark" data-id="@item.Id"><i class="bi-list"></i></a>
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-dark delTodoList" data-id="@item.Id"><i class="bi-trash"></i></button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <td>&nbsp;</td>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th colspan="3">
+                Your task lists:
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @foreach (var item in Model)
+        {
+            <tr id="row-@item.Id">
                 <td>
-                    <div class="form-group">
-                        <input class="form-control" id="newName" type="text" />
-                    </div>
+                    <a href="@Url.Action("Index", "Task", new { id = item.Id })" class="btn btn-outline-dark" data-id="@item.Id"><i class="bi-list"></i></a>
                 </td>
-
                 <td>
-                    <button class="btn btn-outline-dark" id="addTodoList"><i class="bi-plus"></i></button>
+                    @item.Name
+                </td>
+                <td>
+                    <button class="btn btn-outline-dark delTodoList" data-id="@item.Id"><i class="bi-trash"></i></button>
                 </td>
             </tr>
-        </tfoot>
-    </table>
-</div>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <div class="form-group">
+                    <input class="form-control" id="newName" type="text" />
+                </div>
+            </td>
 
-@section Styles {
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-}
+            <td>
+                <button class="btn btn-outline-dark" id="addTodoList"><i class="bi-plus"></i></button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 
 
 @section Scripts
