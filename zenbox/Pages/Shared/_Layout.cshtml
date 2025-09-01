@@ -13,9 +13,8 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <div class="container m-lg-auto m-sm-0">
-    <header>
-        
+    <div id="main-wrapper" class="container m-lg-auto m-sm-0">
+        <header>        
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div>
                     <a href="https://zenbox.azurewebsites.net"><img src="~/images/logo-m.png" height="80" style="padding-right:10px;" /></a>
@@ -45,7 +44,7 @@
             <aside id="sidebar">
                 <partial name="_SidebarPartial" />
             </aside>            
-            <div class="main">
+            <div class="main justify-content-center w-100">
                 <nav class="navbar navbar-expand border-bottom">
                     <button class="toggler-btn" type="button">
                         <i class="bi bi-justify-left"></i>
