@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using zenbox.model;
 
 namespace zenbox.web.Controllers
 {
-    public class ScheduleController : Controller
+    public class ScheduleController(UserManager<IdentityUser> userManager) : BaseController(userManager)
     {
         public IActionResult Index()
         {
-            return View();
+            return View(new LayoutModel<ScheduleModel>(new ScheduleModel(), "Schedule"));
         }
     }
 }

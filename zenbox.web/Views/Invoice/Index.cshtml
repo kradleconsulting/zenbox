@@ -3,7 +3,10 @@
 }
 @using zenbox.model
 
-@model InvoiceModel
+@model LayoutModel<InvoiceModel>
+@{
+    var PageModel = Model.PageModel;
+}
 
 <div class="jumbotron">
     <h1 class="display-4">Invoice list</h1>

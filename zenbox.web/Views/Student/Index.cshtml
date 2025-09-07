@@ -3,7 +3,11 @@
 }
 @using zenbox.model
 
-@model StudentModel
+
+@model LayoutModel<StudentModel>
+@{
+    var PageModel = Model.PageModel;
+}
 
 <div class="jumbotron">
     <h1 class="display-4">Students list</h1>

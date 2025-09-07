@@ -3,7 +3,10 @@
 }
 @using zenbox.model
 
-@model TestModel
+@model LayoutModel<List<TestModel>>
+@{
+    var PageModel = Model.PageModel;
+}
 
 <div class="jumbotron">
     <h1 class="display-4">Test list</h1>

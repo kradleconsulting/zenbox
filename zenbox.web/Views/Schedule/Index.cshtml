@@ -3,7 +3,10 @@
 }
 @using zenbox.model
 
-@model ScheduleModel
+@model LayoutModel<ScheduleModel>
+@{
+    var PageModel = Model.PageModel;
+}
 
 <div class="jumbotron">
     <h1 class="display-4">Schedules list</h1>

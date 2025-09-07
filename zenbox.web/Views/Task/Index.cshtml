@@ -3,19 +3,23 @@
 }
 @using zenbox.model
 
-@model TasklistModel
+@model LayoutModel<TasklistModel>
+@{
+    var PageModel = Model.PageModel;
+}
+
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th colspan=5>
-                @Model.Name
-                <input type="hidden" id="headerId" value="@Model.Id">
+                @PageModel.Name
+                <input type="hidden" id="headerId" value="@PageModel.Id">
             </th>
         </tr>
     </thead>
     <tbody id="tableBody">
-        @foreach (var item in Model.Tasks)
+        @foreach (var item in PageModel.Tasks)
         {
             <tr id="row-@item.Id">
                 <td class="w-10">

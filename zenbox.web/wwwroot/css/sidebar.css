@@ -1,6 +1,6 @@
 ﻿#sidebar {
-    max-width: 264px;
-    min-width: 264px;
+    max-width: 150px;
+    min-width: 150px;
     transition: all 0.35s ease-in-out;
     background-color: #ffffff;
     display: flex;
@@ -9,5 +9,5 @@
 
     #sidebar.collapsed {
         visibility: hidden;
-        margin-left: -264px;
+        margin-left: -150px;
     }

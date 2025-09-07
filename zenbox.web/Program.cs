@@ -13,12 +13,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddTransient<IListService, ListService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
-
 
 var app = builder.Build();
 
@@ -26,13 +27,15 @@ ApplicationDbContext dbcontext = app.Services.CreateScope().ServiceProvider.GetR
 dbcontext.Database.EnsureCreated();
 
 var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<IdentityUser>>();
+var roleManager = app.Services.CreateScope().ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
 if (userManager != null)
-    ApplicationDbInitializer.SeedUsers(userManager);
+    ApplicationDbInitializer.SeedUsers(userManager, roleManager);
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
 
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 #pragma warning disable ASP0014

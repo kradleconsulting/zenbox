@@ -3,7 +3,10 @@
 }
 
 @using zenbox.model
-@model List<TasklistModel>
+@model LayoutModel<List<TasklistModel>>
+@{
+    var PageModel = Model.PageModel;
+}
 
 <table class="table table-striped">
     <thead>
@@ -14,7 +17,7 @@
         </tr>
     </thead>
     <tbody id="tableBody">
-        @foreach (var item in Model)
+        @foreach (var item in PageModel)
         {
             <tr id="row-@item.Id">
                 <td>
