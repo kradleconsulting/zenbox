@@ -7,10 +7,10 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
-    public class TaskController(UserManager<IdentityUser> userManager, ITaskService _taskService, IListService _listService) : BaseController(userManager)
+    public class TaskController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, ITaskService _taskService, ITaskListService _listService) : BaseController(webHostEnvironment, userManager)
     {
         private readonly ITaskService _taskService = _taskService;
-        private readonly IListService _listService = _listService;
+        private readonly ITaskListService _listService = _listService;
 
         public async Task<IActionResult> Index(Guid id)
         {
@@ -19,7 +19,7 @@ namespace zenbox.web.Controllers
             if (model == null)
                 return RedirectToAction("Index", "Home");
 
-            return View(new LayoutModel<TasklistModel>(model, "Task"));
+            return View(new LayoutModel<TasklistModel>(model, "Task", sidebar));
         }
 
         [HttpPost]

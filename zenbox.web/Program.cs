@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using zenbox.core.Interface;
@@ -16,9 +17,22 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login"; // or your custom login path
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
+
 builder.Services.AddRazorPages();
 
-builder.Services.AddTransient<IListService, ListService>();
+builder.Services.AddTransient<ITaskListService, TaskListService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
 
 var app = builder.Build();
@@ -41,7 +55,7 @@ app.UseAuthorization();
 #pragma warning disable ASP0014
 app.UseEndpoints(routes =>
 {
-    routes.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+    routes.MapControllerRoute("default", "{controller=Dashboard}/{action=Index}");        
 });
 #pragma warning restore ASP0014
 

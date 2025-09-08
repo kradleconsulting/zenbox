@@ -1,11 +1,11 @@
 ﻿@{
-    Layout = @"~/Pages/Shared/_Layout.cshtml";
+    Layout = @"~/Views/Shared/_Layout.cshtml";
 }
 @using zenbox.model
 
 @model LayoutModel<TasklistModel>
 @{
-    var PageModel = Model.PageModel;
+    var PageModel = Model.PageModel as TasklistModel;
 }
 
 

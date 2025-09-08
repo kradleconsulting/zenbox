@@ -1,11 +1,11 @@
 ﻿@{
-    Layout = @"~/Pages/Shared/_Layout.cshtml";
+    Layout = @"~/Views/Shared/_Layout.cshtml";
 }
 
 @using zenbox.model
-@model LayoutModel<List<TasklistModel>>
+@model LayoutModel<TasklistCollectionModel>
 @{
-    var PageModel = Model.PageModel;
+    var PageModel = Model.PageModel as TasklistCollectionModel;
 }
 
 <table class="table table-striped">
@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody id="tableBody">
-        @foreach (var item in PageModel)
+        @foreach (var item in PageModel.Items)
         {
             <tr id="row-@item.Id">
                 <td>

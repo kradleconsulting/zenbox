@@ -5,16 +5,19 @@ using zenbox.model;
 
 namespace zenbox.service
 {
-    public class ListService : IListService
+    public class TaskListService : ITaskListService
     {
         protected readonly ApplicationDbContext _db;
-        public ListService(ApplicationDbContext db)
+        public TaskListService(ApplicationDbContext db)
         {
             _db = db;
         }
-        public async Task<IEnumerable<TasklistModel>> GetLists(string userId)
+        public async Task<TasklistCollectionModel> GetLists(string userId)
         {
-            return _db.TaskHeaders.Any(e => e.OwnerId == userId) ?
+            return new TasklistCollectionModel()
+            {
+                Items =
+                _db.TaskHeaders.Any(e => e.OwnerId == userId) ?
                              await _db.TaskHeaders.Where(e => e.OwnerId == userId)
                                                   .Select(e => new TasklistModel()
                                                   {
@@ -22,7 +25,8 @@ namespace zenbox.service
                                                       Name = e.Name,
                                                       OwnerId = e.OwnerId,
                                                   })
-                             .ToListAsync() : new List<TasklistModel>();
+                             .ToListAsync() : new List<TasklistModel>()
+            };
         }
 
         public async Task<TasklistModel> GetList(Guid id)

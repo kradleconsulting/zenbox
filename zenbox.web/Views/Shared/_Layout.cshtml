@@ -1,15 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@using zenbox.model
+@model ILayoutModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - zenbox</title>
+    @* <title>@ViewData["Title"] - zenbox</title> *@
+    <title>@Model.Title - zenbox</title>
     <link rel="stylesheet" href="~/css/main.css" />
     @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sidebar.css" />    
     <link rel="stylesheet" href="~/lib/bootstrap-icons/bootstrap-icons.svg"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
@@ -35,13 +39,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <partial name="_LoginPartial"/>
                 </div>
             </nav>        
         </header>
 
         <div class="d-flex m-lg-3 m-sm-0">
+            <aside id="sidebar">
+                <partial name="_SidebarPartial" for="Sidebar" />
+            </aside>            
             <div class="main justify-content-center w-100">
+                <nav class="navbar navbar-expand border-bottom">
+                    <button class="toggler-btn" type="button">
+                        <i class="bi bi-justify-left"></i>
+                    </button>
+                </nav>
                 <main class="p-3 d-flex justify-content-center">
                     <div class="container-fluid">
                         <div class="mb-3 text-center">
@@ -63,6 +75,7 @@
     @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/sidebar.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
