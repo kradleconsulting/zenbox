@@ -8,9 +8,9 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
-    public class TasklistController(UserManager<IdentityUser> userManager, IListService listService) : BaseController(userManager)
+    public class TasklistController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, ITaskListService listService) : BaseController(webHostEnvironment, userManager)
     {
-        private readonly IListService listService = listService;
+        private readonly ITaskListService listService = listService;
 
         public async Task<IActionResult> Index()
         {
@@ -21,7 +21,7 @@ namespace zenbox.web.Controllers
 
             var model = await listService.GetLists(user.Id);
 
-            return View(new LayoutModel<IEnumerable<TasklistModel>>(model, "Tasklist"));
+            return View(new LayoutModel<TasklistCollectionModel>(model, "Tasklist", sidebar));
         }
 
         [HttpPost]

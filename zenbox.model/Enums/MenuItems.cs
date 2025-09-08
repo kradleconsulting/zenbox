@@ -4,10 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zenbox.model
+namespace zenbox.model.Enums
 {
-    public class ScheduleModel: IPageModel
-    {
-        public string Title { get; set; }
-    }
 }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace zenbox.model
 {
-    public class TaskModel
+    public class TaskModel: IPageModel
     {
+        public string Title { get; set; }
+
         public Guid Id { get; set; }
         public Guid HeaderId { get; set; }
         public string Name { get; set; }

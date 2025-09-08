@@ -1,0 +1,14 @@
+{
+    "items": [
+        { "Title": "Dashboard",  "Link": "/Dashboard/Index", "Roles": ["Admin","Student","Tutor"], "BootstrapIcon": "speedometer2",    "OrderNo": 0},
+        { "Title": "Students",   "Link": "/Student/Index",   "Roles": ["Admin","Tutor"],           "BootstrapIcon": "person-circle",   "OrderNo": 1},
+        { "Title": "Invoices",   "Link": "/Invoice/Index",   "Roles": ["Admin","Student"],         "BootstrapIcon": "credit-card",     "OrderNo": 2},
+        { "Title": "Lessons",    "Link": "#",                "Roles": ["Admin","Tutor"],           "BootstrapIcon": "clipboard-check", "OrderNo": 3},
+        { "Title": "Courses",    "Link": "#",                "Roles": ["Admin","Tutor"],           "BootstrapIcon": "bar-chart-steps", "OrderNo": 4},
+        { "Title": "Schedule",   "Link": "/Schedule/Index",  "Roles": ["Admin","Student","Tutor"], "BootstrapIcon": "calendar4-range", "OrderNo": 5},
+        { "Title": "Tests",      "Link": "/Test/Index",      "Roles": ["Admin","Student","Tutor"], "BootstrapIcon": "card-checklist",  "OrderNo": 6},
+        { "Title": "Tasks",      "Link": "/Tasklist/Index",  "Roles": ["Admin","Student"],         "BootstrapIcon": "pencil-square",   "OrderNo": 7},
+        { "Title": "Materials",  "Link": "/Material/Index",  "Roles": ["Admin","Student","Tutor"], "BootstrapIcon": "collection",      "OrderNo": 8},
+        { "Title": "Users",      "Link": "/Student/Index",   "Roles": ["Admin"],                   "BootstrapIcon": "people-fill",     "OrderNo": 9}
+    ]
+}

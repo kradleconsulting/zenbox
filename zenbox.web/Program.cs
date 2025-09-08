@@ -18,7 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddTransient<IListService, ListService>();
+builder.Services.AddTransient<ITaskListService, TaskListService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
 
 var app = builder.Build();
