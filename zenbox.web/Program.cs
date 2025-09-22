@@ -48,16 +48,9 @@ if (userManager != null)
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
 
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-
-#pragma warning disable ASP0014
-app.UseEndpoints(routes =>
-{
-    routes.MapControllerRoute("default", "{controller=Dashboard}/{action=Index}");        
-});
-#pragma warning restore ASP0014
+//app.UseRouting();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 //app.MapGet("/tasklist/index", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
 //app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));
@@ -80,5 +73,11 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapRazorPages();
 
+#pragma warning disable ASP0014
+app.UseEndpoints(routes =>
+{
+    routes.MapControllerRoute("default", "{controller=Dashboard}/{action=Index}");
+});
+#pragma warning restore ASP0014
 
 app.Run();
