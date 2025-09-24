@@ -8,6 +8,7 @@ namespace zenbox.web.Controllers
     [Authorize]
     public class DashboardController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager) : BaseController(webHostEnvironment, userManager)
     {
+        [Route("/dashboard")]
         public IActionResult Index()
         {
             return View(

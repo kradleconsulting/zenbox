@@ -7,6 +7,7 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
+    [Route("/tasks")]
     public class TaskController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, ITaskService _taskService, ITaskListService _listService) : BaseController(webHostEnvironment, userManager)
     {
         private readonly ITaskService _taskService = _taskService;
@@ -17,7 +18,7 @@ namespace zenbox.web.Controllers
             var model = await _listService.GetList(id);
 
             if (model == null)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
 
             return View(new LayoutModel<TasklistModel>(model, "Task", sidebar));
         }

@@ -26,8 +26,12 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Identity/Account/Login"; // or your custom login path
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    //options.LoginPath = "/Identity/Account/Login"; // or your custom login path
+    //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.LoginPath = "/login";
+    options.LogoutPath = "/logout";
+    options.AccessDeniedPath = "/accessdenied";
+    options.ReturnUrlParameter = "returnurl";
 });
 
 builder.Services.AddRazorPages();

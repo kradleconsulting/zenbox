@@ -8,6 +8,7 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
+    [Route("/tasklist")]
     public class TasklistController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, ITaskListService listService) : BaseController(webHostEnvironment, userManager)
     {
         private readonly ITaskListService listService = listService;

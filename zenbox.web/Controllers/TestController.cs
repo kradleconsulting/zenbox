@@ -6,6 +6,7 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
+    [Route("/tests")]
     public class TestController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager) : BaseController(webHostEnvironment, userManager)
     {
         public IActionResult Index()

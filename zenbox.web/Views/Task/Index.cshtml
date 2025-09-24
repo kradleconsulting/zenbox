@@ -93,7 +93,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/Task/UpdateTask",
+                url: "/tasks/UpdateTask",
                 contentType: "application/json",
                 data: data,
                 success: function (data) {
@@ -118,7 +118,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/Task/AddTask",
+                url: "/tasks/AddTask",
                 contentType: "application/json",
                 data: data,
                 success: function (data) {
@@ -139,7 +139,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/Task/DeleteTask?" + $.param(data),
+                url: "/tasks/DeleteTask?" + $.param(data),
                 success: function (data) {
                     $('#row-' + id).remove();
                 },
