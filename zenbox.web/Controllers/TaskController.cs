@@ -7,12 +7,12 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
-    [Route("/tasks")]
     public class TaskController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, ITaskService _taskService, ITaskListService _listService) : BaseController(webHostEnvironment, userManager)
     {
         private readonly ITaskService _taskService = _taskService;
         private readonly ITaskListService _listService = _listService;
-
+        
+        [Route("/tasks")]
         public async Task<IActionResult> Index(Guid id)
         {
             var model = await _listService.GetList(id);
