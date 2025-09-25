@@ -1,17 +1,25 @@
-﻿@using zenbox.model
+﻿@using Microsoft.AspNetCore.Identity
+@using zenbox.model
+
 @model SidebarModel
+@inject UserManager<IdentityUser> userManager
 
 <ul class="nav nav-pills flex-column mb-auto">
-	@foreach (var item in Model.Items)
-	{
-		<li>
-			<a href="@item.Link" class="nav-link link-body-emphasis">
-				<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-					<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#@item.BootstrapIcon" />
-				</svg>
-				@item.Title
-			</a>
-		</li>
+	@{
+		var user = userManager.FindByNameAsync(User.Identity.Name).Result;
+		var roles = userManager.GetRolesAsync(user).Result;
+		
+		foreach (var item in Model.Items.Where(e => roles.Any(userRole => e.Roles.Any(menuRole => userRole == menuRole))))
+		{
+			<li>
+				<a href="@item.Link" class="nav-link link-body-emphasis">
+					<svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
+						<use xlink:href="/lib/bootstrap-icons/bootstrap-icons.svg#@item.BootstrapIcon" />
+					</svg>
+					@item.Title
+				</a>
+			</li>
+		}
 	}
 </ul>
 @* 	<hr>
