@@ -7,7 +7,7 @@ namespace zenbox.web.Controllers
 {
     [Authorize]
     [Route("/students")]
-    public class StudentController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager) : BaseController(webHostEnvironment, userManager)
+    public class StudentController(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager) : BaseController(httpContextAccessor, webHostEnvironment, userManager)
     {
         public IActionResult Index()
         {

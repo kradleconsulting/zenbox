@@ -7,7 +7,7 @@ namespace zenbox.web.Controllers
 {
     [Authorize]
     [Route("/materials")]
-    public class MaterialController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager) : BaseController(webHostEnvironment, userManager)
+    public class MaterialController(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager) : BaseController(httpContextAccessor, webHostEnvironment, userManager)
     {
         public IActionResult Index()
         {

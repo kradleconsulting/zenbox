@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using zenbox.model;
 
 namespace zenbox.data
 {
@@ -16,9 +17,7 @@ namespace zenbox.data
             ("ghi@xyz.com", "Qwe123%", "Tutor"),
         };
 
-
-
-        public static void SeedUsers(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static void SeedUsers(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (userManager == null || roleManager == null)
                 return;
@@ -26,7 +25,7 @@ namespace zenbox.data
             foreach (var u in initialUsers)
                 if (userManager.FindByEmailAsync(u.Name).Result == null)
                 {
-                    IdentityUser user = new IdentityUser
+                    ApplicationUser user = new ApplicationUser
                     {
                         UserName = u.Name,
                         Email = u.Name,                        

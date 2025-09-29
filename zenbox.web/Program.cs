@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using zenbox.core.Interface;
 using zenbox.data;
+using zenbox.model;
 using zenbox.service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -39,12 +40,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<ITaskListService, TaskListService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 ApplicationDbContext dbcontext = app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
 dbcontext.Database.EnsureCreated();
 
-var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<IdentityUser>>();
+var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<ApplicationUser>>();
 var roleManager = app.Services.CreateScope().ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
 if (userManager != null)

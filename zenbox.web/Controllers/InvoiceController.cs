@@ -7,7 +7,7 @@ namespace zenbox.web.Controllers
 {
     [Authorize]
     [Route("/invoices")]
-    public class InvoiceController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager) : BaseController(webHostEnvironment, userManager)
+    public class InvoiceController(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager) : BaseController(httpContextAccessor, webHostEnvironment, userManager)
     {
         public IActionResult Index()
         {

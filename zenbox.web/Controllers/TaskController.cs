@@ -7,7 +7,7 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
-    public class TaskController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, ITaskService _taskService, ITaskListService _listService) : BaseController(webHostEnvironment, userManager)
+    public class TaskController(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager, ITaskService _taskService, ITaskListService _listService) : BaseController(httpContextAccessor, webHostEnvironment, userManager)
     {
         private readonly ITaskService _taskService = _taskService;
         private readonly ITaskListService _listService = _listService;

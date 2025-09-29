@@ -6,7 +6,7 @@ using zenbox.model;
 namespace zenbox.web.Controllers
 {
     [Authorize]
-    public class DashboardController(IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager) : BaseController(webHostEnvironment, userManager)
+    public class DashboardController(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager) : BaseController(httpContextAccessor, webHostEnvironment, userManager)
     {
         [Route("/dashboard")]
         public IActionResult Index()
