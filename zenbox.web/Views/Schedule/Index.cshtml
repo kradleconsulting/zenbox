@@ -7,7 +7,14 @@
 @{
     var PageModel = Model.PageModel;
 }
-
+<div class="space text-start">
+    Week:
+    <a href="javascript:dp.startDate = dp.startDate.addDays(-7); dp.update();">Previous</a>
+    |
+    <a href="javascript:dp.startDate = new Date(); dp.update();">Today</a>
+    |
+    <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
+</div>
 <div id="dp"></div>
 
 @section Scripts
