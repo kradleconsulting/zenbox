@@ -20,11 +20,11 @@ namespace zenbox.web.Controllers
             if (model == null)
                 return RedirectToAction("Index", "Dashboard");
 
-            return View(new LayoutModel<TasklistModel>(model, "Task", sidebar));
+            return View(new LayoutModel<TasklistViewmodel>(model, "Task", sidebar));
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTask([FromBody] TaskModel taskModel)
+        public async Task<IActionResult> AddTask([FromBody] TaskViewmodel taskModel)
         {
             var model = await _taskService.AddTask(taskModel);
 
@@ -39,7 +39,7 @@ namespace zenbox.web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateTask([FromBody] TaskModel taskModel)
+        public async Task<IActionResult> UpdateTask([FromBody] TaskViewmodel taskModel)
         {
             var model = await _taskService.UpdateTask(taskModel);
 

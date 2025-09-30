@@ -1,6 +1,6 @@
 ﻿namespace zenbox.model
 {
-    public class MaterialModel: IPageModel
+    public class MaterialViewmodel: IPageModel
     {
         public string Title { get; set; }
     }

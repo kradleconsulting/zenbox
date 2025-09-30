@@ -3,7 +3,7 @@
 }
 @using zenbox.model
 
-@model LayoutModel<ScheduleModel>
+@model LayoutModel<ScheduleViewmodel>
 @{
     var PageModel = Model.PageModel;
 }
@@ -16,6 +16,12 @@
     <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
 </div>
 <div id="dp"></div>
+
+
+@foreach(var e in Model.PageModel.Events)
+{    
+    <div>@e.EventStart - @e.EventEnd</div>
+}
 
 @section Scripts
 {

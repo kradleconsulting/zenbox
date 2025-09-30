@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace zenbox.model
 {
-    public class TestModel : IPageModel
+    public class TasklistCollectionViewmodel: IPageModel
     {
         public string Title { get; set; }
+
+        public IEnumerable<TasklistViewmodel> Items { get; set; }
     }
 }

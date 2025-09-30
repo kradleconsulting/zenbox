@@ -7,9 +7,9 @@ namespace zenbox.core.Interface
 {
     public interface ITaskListService
     {
-        public Task<TasklistCollectionModel> GetLists(string userId);
-        public Task<TasklistModel> GetList(Guid id);
-        public Task<TasklistModel> AddList(TasklistModel listModel);
-        public Task DeleteList(Guid id);
+        Task<TasklistCollectionViewmodel> GetLists(string userId);
+        Task<TasklistViewmodel> GetList(Guid id);
+        Task<TasklistViewmodel> AddList(TasklistViewmodel listModel);
+        Task DeleteList(Guid id);
     }
 }

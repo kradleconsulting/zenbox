@@ -22,7 +22,7 @@ namespace zenbox.web.Controllers
 
             var model = await listService.GetLists(user.Id);
 
-            return View(new LayoutModel<TasklistCollectionModel>(model, "Tasklist", sidebar));
+            return View(new LayoutModel<TasklistCollectionViewmodel>(model, "Tasklist", sidebar));
         }
 
         [HttpPost]
@@ -30,7 +30,7 @@ namespace zenbox.web.Controllers
         {
             var user = await userManager.GetUserAsync(User);
 
-            var model = new TasklistModel
+            var model = new TasklistViewmodel
             {
                 Name = name,
                 OwnerId = user.Id

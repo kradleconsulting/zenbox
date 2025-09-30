@@ -7,29 +7,29 @@ namespace zenbox.service
 {
     public class TaskListService : ITaskListService
     {
-        protected readonly ApplicationDbContext _db;
-        public TaskListService(ApplicationDbContext db)
+        protected readonly ZenboxDbContext _db;
+        public TaskListService(ZenboxDbContext db)
         {
             _db = db;
         }
-        public async Task<TasklistCollectionModel> GetLists(string userId)
+        public async Task<TasklistCollectionViewmodel> GetLists(string userId)
         {
-            return new TasklistCollectionModel()
+            return new TasklistCollectionViewmodel()
             {
                 Items =
                 _db.TaskHeaders.Any(e => e.OwnerId == userId) ?
                              await _db.TaskHeaders.Where(e => e.OwnerId == userId)
-                                                  .Select(e => new TasklistModel()
+                                                  .Select(e => new TasklistViewmodel()
                                                   {
                                                       Id = e.Id,
                                                       Name = e.Name,
                                                       OwnerId = e.OwnerId,
                                                   })
-                             .ToListAsync() : new List<TasklistModel>()
+                             .ToListAsync() : new List<TasklistViewmodel>()
             };
         }
 
-        public async Task<TasklistModel> GetList(Guid id)
+        public async Task<TasklistViewmodel> GetList(Guid id)
         {
 
             var th = await _db.TaskHeaders
@@ -38,12 +38,12 @@ namespace zenbox.service
 
             if (th != null)
             {
-                return new TasklistModel()
+                return new TasklistViewmodel()
                 {
                     Id = th.Id,
                     Name = th.Name,
                     OwnerId = th.OwnerId,
-                    Tasks = th.Lines.Select(e => new TaskModel()
+                    Tasks = th.Lines.Select(e => new TaskViewmodel()
                     {
                         Id = e.Id,
                         HeaderId = e.Header.Id,
@@ -59,7 +59,7 @@ namespace zenbox.service
             return null;
         }
 
-        public async Task<TasklistModel> AddList(TasklistModel listModel)
+        public async Task<TasklistViewmodel> AddList(TasklistViewmodel listModel)
         {            
             var th = new TaskHeader()
             {
@@ -78,12 +78,12 @@ namespace zenbox.service
             _db.TaskLines.AddRange(lines);
             await _db.SaveChangesAsync();
 
-            return new TasklistModel()
+            return new TasklistViewmodel()
             {
                 Id = th.Id,
                 OwnerId = th.OwnerId,
                 Name = th.Name,
-                Tasks = lines.Select(e => new TaskModel()
+                Tasks = lines.Select(e => new TaskViewmodel()
                 {
                     Id = e.Id,
                     HeaderId = e.Header.Id,

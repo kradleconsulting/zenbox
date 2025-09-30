@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace zenbox.model
 {
-    public class TasklistModel: IPageModel
+    public class TasklistViewmodel: IPageModel
     {
         public string Title { get; set; }
 
@@ -14,6 +14,6 @@ namespace zenbox.model
         public string Name { get; set; }
         public string OwnerId { get; set; }
 
-        public List<TaskModel> Tasks = new List<TaskModel>();
+        public List<TaskViewmodel> Tasks = new List<TaskViewmodel>();
     }
 }

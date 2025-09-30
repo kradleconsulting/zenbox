@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace zenbox.model
 {
-    public class StudentModel: IPageModel
+    public class DashboardViewmodel: IPageModel
     {
         public string Title { get; set; }
     }

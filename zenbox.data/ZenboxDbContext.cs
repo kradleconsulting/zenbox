@@ -5,24 +5,23 @@ using zenbox.model;
 
 namespace zenbox.data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ZenboxDbContext : IdentityDbContext<ApplicationUser>
     {
-        DbContextOptionsBuilder<ApplicationDbContext> o = new DbContextOptionsBuilder<ApplicationDbContext>()
+        DbContextOptionsBuilder<ZenboxDbContext> o = new DbContextOptionsBuilder<ZenboxDbContext>()
                 .UseSqlServer("Server=tcp:kradle.database.windows.net,1433;Initial Catalog=zenbox;Persist Security Info=False;User ID=sdrobyshev;Password=sy%LLr]F6f,u;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
-        public ApplicationDbContext() : base(new DbContextOptionsBuilder().UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Todo-Sergey-Drobyshev;Trusted_Connection=True;MultipleActiveResultSets=true").Options)
+        public ZenboxDbContext() : base(new DbContextOptionsBuilder().UseSqlServer("Server=tcp:kradle.database.windows.net,1433;Initial Catalog=zenbox;Persist Security Info=False;User ID=sdrobyshev;Password=sy%LLr]F6f,u;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;").Options)
         {
 
         }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ZenboxDbContext(DbContextOptions<ZenboxDbContext> options)
             : base(options)
         {
         }
 
         public DbSet<TaskHeader> TaskHeaders { get; set; }
         public DbSet<TaskLine> TaskLines { get; set; }
-
         public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

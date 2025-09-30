@@ -12,7 +12,7 @@ namespace zenbox.web.Controllers
         public IActionResult Index()
         {
             return View(
-                new LayoutModel<DashboardModel>(new DashboardModel(), "Dashboard", sidebar));
+                new LayoutModel<DashboardViewmodel>(new DashboardViewmodel(), "Dashboard", sidebar));
         }
     }
 }

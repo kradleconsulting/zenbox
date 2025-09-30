@@ -5,10 +5,10 @@ namespace zenbox.core.Interface
 {
     public interface ITaskService
     {
-        public Task<IEnumerable<TaskModel>> GetTasks(Guid id);
-        public Task<TaskModel> GetTask(Guid id);
-        public Task<TaskModel> AddTask(TaskModel taskModel);
-        public Task DeleteTask(Guid id);
-        public Task<TaskModel> UpdateTask(TaskModel taskModel);
+        Task<IEnumerable<TaskViewmodel>> GetTasks(Guid id);
+        Task<TaskViewmodel> GetTask(Guid id);
+        Task<TaskViewmodel> AddTask(TaskViewmodel taskModel);
+        Task DeleteTask(Guid id);
+        Task<TaskViewmodel> UpdateTask(TaskViewmodel taskModel);
     }
 }

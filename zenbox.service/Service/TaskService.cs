@@ -12,17 +12,17 @@ namespace zenbox.service
 {
     public class TaskService : ITaskService
     {
-        protected readonly ApplicationDbContext _db;
+        protected readonly ZenboxDbContext _db;
 
-        public TaskService(ApplicationDbContext db)
+        public TaskService(ZenboxDbContext db)
         {
             _db = db;
         }
 
-        public async Task<IEnumerable<TaskModel>> GetTasks(Guid id)
+        public async Task<IEnumerable<TaskViewmodel>> GetTasks(Guid id)
         {
             return await _db.TaskLines.Where(e => e.Header.Id == id)
-                .Select(e => new TaskModel()
+                .Select(e => new TaskViewmodel()
                 {
                     Id = e.Id,
                     HeaderId = e.Header.Id,
@@ -33,11 +33,11 @@ namespace zenbox.service
                 }).ToListAsync();
         }
 
-        public async Task<TaskModel> GetTask(Guid id)
+        public async Task<TaskViewmodel> GetTask(Guid id)
         {
             var tl = await _db.TaskLines.FindAsync(id);
 
-            return new TaskModel()
+            return new TaskViewmodel()
             {
                 Id = tl.Id,
                 Description = tl.Description,
@@ -47,7 +47,7 @@ namespace zenbox.service
             };
         }
 
-        public async Task<TaskModel> AddTask(TaskModel taskModel)
+        public async Task<TaskViewmodel> AddTask(TaskViewmodel taskModel)
         {
             var th = await _db.TaskHeaders
                               .FindAsync(taskModel.HeaderId);
@@ -78,7 +78,7 @@ namespace zenbox.service
             await _db.SaveChangesAsync();
         }
 
-        public async Task<TaskModel> UpdateTask(TaskModel taskModel)
+        public async Task<TaskViewmodel> UpdateTask(TaskViewmodel taskModel)
         {
             var tl = await _db.TaskLines.FindAsync(taskModel.Id);
 

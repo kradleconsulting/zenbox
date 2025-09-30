@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\css\sidebar.css~RF571f1318.TMP" />
   </ItemGroup>
 
@@ -34,10 +41,6 @@
     <ProjectReference Include="..\zenbox.core\zenbox.core.csproj" />
     <ProjectReference Include="..\zenbox.data\zenbox.data.csproj" />
 	<ProjectReference Include="..\zenbox.service\zenbox.service.csproj" />	  
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

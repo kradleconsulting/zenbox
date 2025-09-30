@@ -11,7 +11,7 @@ namespace zenbox.web.Controllers
     {
         public IActionResult Index()
         {
-            return View(new LayoutModel<MaterialModel>(new MaterialModel(), "Material", sidebar));
+            return View(new LayoutModel<MaterialViewmodel>(new MaterialViewmodel(), "Material", sidebar));
         }
     }
 }

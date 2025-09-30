@@ -9,9 +9,9 @@ using zenbox.model;
 namespace zenbox.data
 {
     public static class ApplicationDbInitializer
-    {        
-        private static List<(string Name, string Password, string Role)> initialUsers = new List<(string Name, string Password, string Role)>() 
-        { 
+    {
+        private static List<(string Name, string Password, string Role)> initialUsers = new List<(string Name, string Password, string Role)>()
+        {
             ("abc@xyz.com", "Qwe123%", "Admin"),
             ("dfe@xyz.com", "Qwe123%", "Student"),
             ("ghi@xyz.com", "Qwe123%", "Tutor"),

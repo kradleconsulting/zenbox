@@ -11,7 +11,7 @@ using zenbox.data;
 
 namespace zenbox.data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ZenboxDbContext))]
     [Migration("20250821000721_init")]
     partial class init
     {

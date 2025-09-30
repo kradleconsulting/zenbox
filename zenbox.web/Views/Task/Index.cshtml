@@ -3,9 +3,9 @@
 }
 @using zenbox.model
 
-@model LayoutModel<TasklistModel>
+@model LayoutModel<TasklistViewmodel>
 @{
-    var PageModel = Model.PageModel as TasklistModel;
+    var PageModel = Model.PageModel as TasklistViewmodel;
 }
 
 
@@ -29,7 +29,7 @@
                     </div>
                 </td>
                 <td id="text-@item.Id">
-                    @item.Description
+                    @item.Id
                 </td>
                 <td class="date-field" id="date-@item.Id">
                     @item.LastUpdated

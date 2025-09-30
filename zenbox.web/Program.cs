@@ -10,13 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ZenboxDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ZenboxDbContext>();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -37,14 +37,19 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddTransient<IDataService, DataService>();
 builder.Services.AddTransient<ITaskListService, TaskListService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
+builder.Services.AddTransient<ITutorService, TutorService>();
+builder.Services.AddTransient<IStudentService, StudentService>();
+builder.Services.AddTransient<IScheduleService, ScheduleService>();
+
 
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-ApplicationDbContext dbcontext = app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+ZenboxDbContext dbcontext = app.Services.CreateScope().ServiceProvider.GetRequiredService<ZenboxDbContext>();
 dbcontext.Database.EnsureCreated();
 
 var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserManager<ApplicationUser>>();
@@ -53,7 +58,7 @@ var roleManager = app.Services.CreateScope().ServiceProvider.GetService<RoleMana
 if (userManager != null)
     ApplicationDbInitializer.SeedUsers(userManager, roleManager);
 
-app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+app.Services.CreateScope().ServiceProvider.GetRequiredService<ZenboxDbContext>().Database.Migrate();
 
 //app.MapGet("/tasklist/index", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
 //app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));

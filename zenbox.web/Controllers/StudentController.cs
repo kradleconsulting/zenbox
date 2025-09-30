@@ -11,7 +11,7 @@ namespace zenbox.web.Controllers
     {
         public IActionResult Index()
         {
-            return View(new LayoutModel<StudentModel>(new StudentModel(), "Student", sidebar));
+            return View(new LayoutModel<StudentViewmodel>(new StudentViewmodel(), "Student", sidebar));
         }
     }
 }
