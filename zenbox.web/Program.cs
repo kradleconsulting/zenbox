@@ -44,7 +44,6 @@ builder.Services.AddTransient<ITutorService, TutorService>();
 builder.Services.AddTransient<IStudentService, StudentService>();
 builder.Services.AddTransient<IScheduleService, ScheduleService>();
 
-
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
@@ -59,9 +58,6 @@ if (userManager != null)
     ApplicationDbInitializer.SeedUsers(userManager, roleManager);
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ZenboxDbContext>().Database.Migrate();
-
-//app.MapGet("/tasklist/index", async (HttpContext context) => await context.Response.WriteAsync("Tasks"));
-//app.MapGet("/task/{id}", async (HttpContext context) => await context.Response.WriteAsync($"Task #{context.Request.RouteValues["id"]}"));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -79,13 +75,19 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-app.MapRazorPages();
 
-#pragma warning disable ASP0014
-app.UseEndpoints(routes =>
-{
-    routes.MapControllerRoute("default", "{controller=Dashboard}/{action=Index}");
-});
-#pragma warning restore ASP0014
+app.MapControllerRoute(
+    name: "root",
+    pattern: "",
+    defaults: new { controller = "Dashboard", action = "Index" }
+);
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Dashboard}/{action=Index}"
+);
+
+app.MapControllers();
+app.MapRazorPages();
 
 app.Run();

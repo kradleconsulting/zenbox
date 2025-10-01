@@ -1,6 +1,8 @@
 ﻿const dp = new DayPilot.Calendar("dp", {
     viewType: "Week",
     timeRangeSelectedHandling: "Enabled",
+    scale: "CellDuration",
+    cellDuration: 30,
     onTimeRangeSelected: async (args) => {
         const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
         const calendar = args.control;
@@ -23,19 +25,6 @@
     },
     eventClickHandling: "Disabled",
 });
-dp.init();
 
-const app = {
-    init() {
-        const events = [
-            {
-                id: "1",
-                start: DayPilot.Date.today().addHours(10),
-                end: DayPilot.Date.today().addHours(12),
-                text: "Event 1"
-            }
-        ];
-        dp.update({ events });
-    }
-};
-app.init();
+dp.init();
+dp.events.load("/events");

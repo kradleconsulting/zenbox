@@ -51,10 +51,12 @@ namespace zenbox.data
                 return await db.Schedules
                     .Select(e => new ScheduleEventModel()
                     {
+                        Id = e.EventId,
+                        Text = e.Text,
                         TutorId = e.TeacherId,
                         StudentId = e.StudentId,
-                        EventStart = e.StartTime,
-                        EventEnd = e.EndTime,
+                        Start = e.StartTime,
+                        End = e.EndTime,
                     }).ToListAsync();
             }
         }

@@ -11,8 +11,9 @@ namespace zenbox.Pages
     {
         public string Title { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }
