@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="DashboardModel.cs~RF563d06df.TMP" />
+    <None Remove="Viewmodel\StudentViewmodel.cs~RF6a69803.TMP" />
   </ItemGroup>
 
   <ItemGroup>

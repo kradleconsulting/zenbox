@@ -17,6 +17,8 @@ namespace zenbox.data
             ("ghi@xyz.com", "Qwe123%", "Tutor"),
         };
 
+        private static List<string> initialStudents = new List<string>() { "Вася", "Петя", "Маша" };
+
         public static void SeedUsers(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (userManager == null || roleManager == null)
@@ -46,7 +48,32 @@ namespace zenbox.data
                             userManager.AddToRoleAsync(user, u.Role).Wait();
                         
                     }
-                }
+                }            
+        }
+
+        public static void SeedTestStudents(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            if (userManager == null || roleManager == null)
+                return;
+
+            var u = userManager.FindByEmailAsync("dfe@xyz.com").Result;
+
+            using (var db = new ZenboxDbContext())
+            {
+                if (u != null && !db.Students.Any())
+                    foreach (var s in initialStudents)
+                    {
+                        db.Students.Add(new Student()
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = s,
+                            UserId = Guid.Parse(u.Id)
+                        });
+
+                        db.SaveChangesAsync().Wait();
+                    }
+            }
         }
     }
 }
+

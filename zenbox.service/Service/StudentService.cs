@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using zenbox.core.Interface;
+using zenbox.data;
 using zenbox.model;
 using zenbox.model.Entity;
 
@@ -11,14 +13,11 @@ namespace zenbox.service
 {
     public class StudentService : IStudentService
     {
-        public Task<bool> Add(StudentModel student)
-        {
-            throw new NotImplementedException();
-        }
+        protected readonly ZenboxDbContext _db;
 
-        public Task<bool> Delete(Guid id)
+        public StudentService(ZenboxDbContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
         }
 
         public Task<StudentModel> Get(Guid id)
@@ -26,14 +25,56 @@ namespace zenbox.service
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<StudentModel>> GetList()
+
+        public Task<StudentModel> Update(StudentModel student)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(StudentModel student)
+
+        public async Task<IEnumerable<StudentModel>> GetList()
         {
-            throw new NotImplementedException();
+            return _db.Students.Any() ?
+                    await _db.Students.Select(e => new StudentModel()
+                    {
+                        Id = e.Id,
+                        Name = e.Name,
+                        IsActive = e.IsActive,
+                        UserId = e.UserId
+                    }).ToListAsync() : new List<StudentModel>();
+        }
+
+        public async Task<StudentModel> Add(StudentModel student)
+        {
+            var s = new Student()
+            {
+                UserId = student.UserId,
+                Id = student.Id,
+                Name = student.Name,
+                IsActive = student.IsActive
+            };
+
+            _db.Students.Add(s);
+            await _db.SaveChangesAsync();
+
+            return new StudentModel()
+            {
+                UserId = s.UserId,
+                Id = s.Id,
+                Name = s.Name,
+                IsActive = s.IsActive
+            };
+        }
+
+        public async Task<bool> Delete(Guid id)
+        {
+            var s = await _db.Students.SingleAsync(e => e.Id == id);            
+            
+            _db.Students.Remove(s);
+
+            await _db.SaveChangesAsync();
+
+            return true;
         }
     }
 }

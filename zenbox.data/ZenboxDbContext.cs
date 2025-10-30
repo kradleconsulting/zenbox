@@ -23,6 +23,7 @@ namespace zenbox.data
         public DbSet<TaskHeader> TaskHeaders { get; set; }
         public DbSet<TaskLine> TaskLines { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

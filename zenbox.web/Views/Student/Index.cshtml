@@ -4,19 +4,170 @@
 @using zenbox.model
 
 
-@model LayoutModel<StudentViewmodel>
+@model LayoutModel<StudentListViewmodel>
 @{
     var PageModel = Model.PageModel;
 }
 
-<div class="jumbotron">
-    <h1 class="display-4">Students list</h1>
-    <p class="lead">Here will be implemented a list of students with card add/edit/archive actions </p>
-    <hr class="my-4">
-    <p>The list is going to be connected with Schedules, Invoices, Tasks</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
-</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th colspan=5>
+                @PageModel.Title
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @foreach (var item in PageModel.Items)
+        {
+            <tr id="row-@item.Id">
+                <td class="w-10">
+                    <div class="icheck-default">
+                        <input type="checkbox" id="chk-@item.Id" class="form-check-input cbStudentActive" checked="@item.IsActive" data-id="@item.Id">
+                        <label for="chk-@item.Id"></label>
+                    </div>
+                </td>
+                <td>@item.Name</td>
+                <td>
+                    <button class="btn btn-outline-dark delStudent" data-id="@item.Id"><i class="bi-trash"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <div class="form-group">
+                    <input id="newStudent" class="form-control" type="text" />
+                </div>
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                <button class="btn btn-outline-dark" id="addStudent"><i class="bi-plus"></i></button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" />
+}
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('#addStudent').click(addStudent);
+            $('.delStudent').click(function () { delStudent($(this).data('id')); });
+
+            $('.cbStudentActive').each(function () {
+                var checked = $(this).prop("checked");
+                var id = $(this).data('id');
+
+                if (checked) {
+                    $('#text-' + id).addClass('strikethrough');
+                } else {
+                    $('#text-' + id).removeClass('strikethrough');
+                }
+            })
+
+            $('.cbStudentActive').change(function () { updateTask($(this).data('id'), $(this).prop("checked")) });
+
+            $("#newStudent").keyup(function (event) {
+                if (event.keyCode === 13) {
+                    $("#addStudent").click();
+                }
+            });
+        });
+
+        var updateTask = function (id, checked) {
+
+            var data = JSON.stringify({ id: id, checked: checked });
+
+            $.ajax({
+                type: "POST",
+                url: "/students/update",
+                contentType: "application/json",
+                data: data,
+                success: function (data) {
+                    if (data.checked) {
+                        $('#text-' + data.id).addClass('strikethrough');
+                    } else {
+                        $('#text-' + data.id).removeClass('strikethrough');
+                    }
+                    $('#date-' + data.id).text(formatDate(data.lastUpdated))
+                },
+                error: function () {
+                    alert("student update error");
+                }
+            });
+        }
+
+        var addStudent = function () {
+
+            var student = $('#newStudent').val();            
+            var data = JSON.stringify({ Name: student });
+
+            $.ajax({
+                type: "POST",
+                url: "/students/add",
+                contentType: "application/json",
+                data: data,
+                success: function (data) {
+                    if (!data.description) { data.description = ''; }
+                    $('#tableBody').append($("<tr id='row-" + data.id + "'><td><div class='icheck-default'><input type='checkbox' id='chk-" + data.id + "' class='form-check-input cbStudentActive' data-id='" + data.id + "'><label for='chk-" + data.id + "'></label></div></td><td id='text-" + data.id + "'>" + data.description + "</td><td id='date-" + data.id + "'>" + formatDate(data.lastUpdated) + "</td><td> <button class='btn btn-outline-dark delStudent' data-id='" + data.id + "' onclick='delStudent($(this).data(&quot;id&quot;));'><i class='bi-trash'></i></button></td></tr>"));
+                    $('.cbStudentActive').change(function () { updateStudent($(this).data('id'), $(this).prop("checked")) });
+                    $('#newStudent').val('');
+                },
+                error: function () {
+                    alert("add student error");
+                }
+            });
+        };
+
+        var delStudent = function (id) {
+
+            var data = { id: id };
+
+            $.ajax({
+                type: "POST",
+                url: "/students/delete?" + $.param(data),
+                success: function (data) {
+                    $('#row-' + id).remove();
+                },
+                error: function () {
+                    alert("student delete error");
+                }
+            });
+        };
+
+        var formatDate = function (date) {
+            var d = new Date(date);
+
+            var currDay = d.getDate();
+            var currMonth = d.getMonth();
+            var currYear = d.getFullYear();
+
+            var currHour = d.getHours();
+            var currMin = d.getMinutes();
+            var currSec = d.getSeconds();
+
+            var month = currMonth + 1;
+
+            var ampm = currHour >= 12 ? 'PM' : 'AM';
+            var hours = currHour % 12;
+            hours = hours ? hours : 12;
+
+            var minutes = currMin < 10 ? '0' + currMin : currMin;
+            var seconds = currSec < 10 ? '0' + currSec : currSec;
+
+            var strDate = currDay + "/" + month + "/" + currYear + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+
+            return strDate;
+        }
+    </script>
+}
+
 
 

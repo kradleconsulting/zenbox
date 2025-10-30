@@ -55,7 +55,10 @@ var userManager = app.Services.CreateScope().ServiceProvider.GetService<UserMana
 var roleManager = app.Services.CreateScope().ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
 if (userManager != null)
+{
     ApplicationDbInitializer.SeedUsers(userManager, roleManager);
+    ApplicationDbInitializer.SeedTestStudents(userManager, roleManager);
+}
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ZenboxDbContext>().Database.Migrate();
 

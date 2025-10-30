@@ -12,8 +12,8 @@ namespace zenbox.core.Interface
     {
         Task<IEnumerable<StudentModel>> GetList();
         Task<StudentModel> Get(Guid id);
-        Task<bool> Add(StudentModel student);
+        Task<StudentModel> Add(StudentModel student);
         Task<bool> Delete(Guid id);
-        Task<bool> Update(StudentModel student);
+        Task<StudentModel> Update(StudentModel student);
     }
 }

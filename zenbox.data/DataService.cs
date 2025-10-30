@@ -70,7 +70,7 @@ namespace zenbox.data
                     .Where(r => r.RoleName == "Student")
                     .Select(ur => new StudentModel
                     {
-                        StudentId = Guid.Parse(ur.u.Id),
+                        Id = Guid.Parse(ur.u.Id),
                         Name = ur.u.UserName
                     }).ToListAsync();
             }
