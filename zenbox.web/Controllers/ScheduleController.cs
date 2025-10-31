@@ -17,7 +17,7 @@ namespace zenbox.web.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var events = await scheduleService.GetList(Guid.Parse(currentUser.Id));
+            var events = await scheduleService.GetList(currentUser);
             if (currentUser.IsStudent)
                 return View("Index", new LayoutModel<ScheduleViewmodel>(new ScheduleViewmodel(), "Schedule", sidebar ));
             else
@@ -27,8 +27,18 @@ namespace zenbox.web.Controllers
         [Route("/events")]
         public async Task<IActionResult> Events()
         {
-            var events = await scheduleService.GetList(Guid.Parse(currentUser.Id));
+            var events = await scheduleService.GetList(currentUser);
             return Json(events);
+        }
+
+        [Route("/resources")]
+        public async Task<IActionResult> Resources()
+        {
+            var user = await userManager.GetUserAsync(User);
+            
+            var resources = await scheduleService.GetResources(user);
+
+            return Json(resources);
         }
     }
 }

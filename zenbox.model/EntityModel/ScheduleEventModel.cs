@@ -16,7 +16,8 @@ namespace zenbox.model.Entity
         [JsonIgnore]
         public Guid StudentId { get; set; }
 
-        public int Id { get; set; }
+        public int Id { get; set; }        
+        public Guid Resource { get; set; }
         public string Text { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }

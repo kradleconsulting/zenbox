@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace zenbox.model.Entity
 {
-    public class TutorModel
+    public class ScheduleResourceModel
     {
         public Guid Id { get; set; }
-        public Guid UserId { get; set; }
         public string Name { get; set; }
-        public bool IsActive { get; set; }
     }
 }

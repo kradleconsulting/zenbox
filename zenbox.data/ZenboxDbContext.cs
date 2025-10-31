@@ -24,7 +24,7 @@ namespace zenbox.data
         public DbSet<TaskLine> TaskLines { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Student> Students { get; set; }
-
+        public DbSet<Teacher> Teachers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

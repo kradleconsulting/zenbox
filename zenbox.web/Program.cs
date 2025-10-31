@@ -58,6 +58,7 @@ if (userManager != null)
 {
     ApplicationDbInitializer.SeedUsers(userManager, roleManager);
     ApplicationDbInitializer.SeedTestStudents(userManager, roleManager);
+    ApplicationDbInitializer.SeedTestTeacher(userManager, roleManager);
 }
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ZenboxDbContext>().Database.Migrate();

@@ -25,12 +25,22 @@ namespace zenbox.service
             throw new NotImplementedException();
         }
 
+        public async Task<StudentModel> GetByUserId(Guid id)
+        {
+            return await _db.Students.Where(e => e.UserId == id)
+                .Select(e => new StudentModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    IsActive = e.IsActive,
+                    UserId = e.UserId
+                }).SingleAsync();
+        }
 
         public Task<StudentModel> Update(StudentModel student)
         {
             throw new NotImplementedException();
         }
-
 
         public async Task<IEnumerable<StudentModel>> GetList()
         {

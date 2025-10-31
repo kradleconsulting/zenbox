@@ -38,17 +38,18 @@ namespace zenbox.data
                     .Where(r => r.RoleName == "Tutor")
                     .Select(ur => new TutorModel
                     {
-                        TutorId = Guid.Parse(ur.u.Id),
+                        Id = Guid.Parse(ur.u.Id),
                         Name = ur.u.UserName
                     }).ToListAsync();
             }
         }
 
-        public async Task<List<ScheduleEventModel>> GetSchedules(Guid userId)
+        public async Task<List<ScheduleEventModel>> GetStudentSchedules(Guid studentId)
         {
             using (var db = new ZenboxDbContext())
             {
                 return await db.Schedules
+                    .Where(e => e.StudentId == studentId)
                     .Select(e => new ScheduleEventModel()
                     {
                         Id = e.EventId,
@@ -58,6 +59,40 @@ namespace zenbox.data
                         Start = e.StartTime,
                         End = e.EndTime,
                     }).ToListAsync();
+            }
+        }
+
+        public async Task<List<ScheduleEventModel>> GetTutorSchedules(Guid tutorId)
+        {
+            using (var db = new ZenboxDbContext())
+            {
+                return await db.Schedules
+                    .Where(e => e.TeacherId == tutorId)
+                    .Select(e => new ScheduleEventModel()
+                    {
+                        Id = e.EventId,
+                        Text = e.Text,
+                        TutorId = e.TeacherId,
+                        StudentId = e.StudentId,
+                        Resource = e.StudentId,
+                        Start = e.StartTime,
+                        End = e.EndTime,
+                    }).ToListAsync();
+            }
+        }
+
+        public async Task<IEnumerable<ScheduleResourceModel>> GetTutorResources(Guid tutorId)
+        {
+            using (var db = new ZenboxDbContext())
+            {
+                return await db.Schedules
+                    .Join(db.Students, s => s.StudentId, st => st.Id, (s, st) => new { s, st })
+                    .Where(e => e.s.TeacherId == tutorId)                    
+                    .Select(e => new ScheduleResourceModel()
+                    {
+                        Id = e.st.Id,
+                        Name = e.st.Name
+                    }).Distinct().ToListAsync();
             }
         }
 
